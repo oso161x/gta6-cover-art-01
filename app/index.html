@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vice Cover Studio — turn any photo into GTA 6-style cover art, offline in your browser, and export it as a PNG.">
+<title>Vice Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VCS</span>
+    <div>
+      <h1>Vice Cover Studio</h1>
+      <p>Turn any photo into GTA-style cover art — offline, on your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undo" type="button" title="Undo (Ctrl+Z)">↩ Undo</button>
+    <button id="redo" type="button" title="Redo (Ctrl+Shift+Z)">↪ Redo</button>
+  </div>
+</header>
+<main class="app">
+  <section class="stage">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="hint" id="panel-hint">Click a panel to select it — drag to move the photo, scroll to zoom.</p>
+  </section>
+  <aside class="controls">
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <label class="upload">Add your photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <div class="samples">
+        <span>Try a sample:</span>
+        <button type="button" data-sample="boulevard">Boulevard</button>
+        <button type="button" data-sample="pier">Pier</button>
+      </div>
+      <div class="thumbs" id="thumbs" aria-label="Your photos"></div>
+      <p class="note">Click a thumbnail to put that photo in the selected panel. Up to 4 photos.</p>
+    </section>
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div class="picker" id="layouts"></div>
+    </section>
+    <section class="group">
+      <h2>3 · Colour grade</h2>
+      <div class="picker" id="grades"></div>
+    </section>
+    <section class="group">
+      <h2>4 · Caption</h2>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="Neon Shore" autocomplete="off">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="60" value="chasing the neon lights" autocomplete="off">
+      </label>
+    </section>
+    <section class="group">
+      <h2>5 · Selected panel</h2>
+      <label>Zoom <span id="zoom-val">100%</span>
+        <input id="zoom" type="range" min="100" max="300" value="100">
+      </label>
+      <div class="row">
+        <button id="reset-crop" type="button">Reset crop</button>
+        <button id="fill-panels" type="button">Fill all panels</button>
+      </div>
+    </section>
+    <section class="group">
+      <h2>6 · Export</h2>
+      <div class="picker" id="sizes"></div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <button id="export-all" type="button">Export all 3 sizes</button>
+      <p id="status" role="status"></p>
+    </section>
+    <p class="fineprint">100% offline — your photos never leave this machine. Original lettering in
+      Anton &amp; Pacifico (SIL OFL). Not affiliated with Rockstar Games.</p>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
